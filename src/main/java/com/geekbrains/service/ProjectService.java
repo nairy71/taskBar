@@ -11,4 +11,6 @@ public interface ProjectService extends Service<Project, Long> {
 
     List<Project> getAllAvailableForUser(User user);
 
+    void createNewProject(String name, String description, User user);
+
 }

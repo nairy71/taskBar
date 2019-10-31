@@ -35,6 +35,14 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
+    @PostMapping("/addProject")
+    public String addNewProject(String name, String description, @AuthenticationPrincipal User user) {
+
+        projectService.createNewProject(name, description, user);
+
+        return REDIRECTION;
+    }
+
     @GetMapping(PROJECT_MAPPING)
     public String main(@AuthenticationPrincipal User user, @RequestParam Long id, Model model) {
 

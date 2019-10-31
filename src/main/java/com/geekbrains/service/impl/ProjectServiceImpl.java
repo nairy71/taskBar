@@ -8,8 +8,10 @@ import com.geekbrains.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -35,6 +37,21 @@ public class ProjectServiceImpl extends ServiceImpl<Project, Long> implements Pr
     @Override
     public List<Project> getAllBySupervisorUsername(String username) {
         return repository.findAllBySupervisorUsername(username);
+    }
+
+    @Override
+    public void createNewProject(String name, String description, User user) {
+
+        Project project = new Project();
+        ArrayList<User> list = new ArrayList<>();
+
+        list.add(user);
+        project.setName(name);
+        project.setDescription(description);
+        project.setSupervisor(user);
+        project.setMembers(list);
+
+        repository.save(project);
     }
 
 }
