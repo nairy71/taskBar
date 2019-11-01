@@ -1,7 +1,6 @@
 package com.geekbrains.controller;
 
 import com.geekbrains.domain.Task;
-import com.geekbrains.domain.TaskStatus;
 import com.geekbrains.domain.User;
 import com.geekbrains.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
