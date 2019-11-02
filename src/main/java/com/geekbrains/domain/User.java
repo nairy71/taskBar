@@ -32,12 +32,13 @@ public class User implements UserDetails {
     private boolean active;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "user_role_user_FK")))
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id",
+                     foreignKey = @ForeignKey(name = "user_role_user_FK")))
     @Enumerated(EnumType.STRING)
     @Column(name = "role", length = 20)
     private Set<Role> roles;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "members")
     private List<Project> projects;
 
     @Override

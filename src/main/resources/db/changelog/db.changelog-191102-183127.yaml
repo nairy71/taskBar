@@ -1,0 +1,8 @@
+databaseChangeLog:
+- changeSet:
+    id: 1572719515766-1
+    author: nairy71 (generated)
+    changes:
+    - dropTable:
+        tableName: usr_projects
+
