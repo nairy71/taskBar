@@ -8,14 +8,15 @@ import com.geekbrains.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
 public class ProjectServiceImpl extends ServiceImpl<Project, Long> implements ProjectService {
+
+    @Autowired
+    private ProjectRepository repository;
 
     @Autowired
     private UserService userService;
@@ -23,11 +24,11 @@ public class ProjectServiceImpl extends ServiceImpl<Project, Long> implements Pr
     @Override
     public List<Project> getAllAvailableForUser(User user) {
 
-        return user.getProjects();
-    }
+        User userFromDb = userService.getById(user.getId());
+        List<Project> projects = userFromDb.getProjects();
 
-    @Autowired
-    private ProjectRepository repository;
+        return userFromDb.getProjects();
+    }
 
     @Override
     PagingAndSortingRepository<Project, Long> getRepository() {
